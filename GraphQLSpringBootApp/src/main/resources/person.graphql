@@ -1,0 +1,26 @@
+schema {
+ 	query: Query
+}
+
+type Query {
+	personById(id: String)		: Person
+	addressById(id : String)	: Address
+	addressByPersonId(id:String): Address
+}
+
+type Person {
+	id		:	String
+	name	:	String
+	email	:	String
+	dob		:	String
+	address	:	String
+}
+
+type Address {
+	id			:	String
+	house_no	:	String
+	city		: 	String
+	pin			: 	String
+}
+
+
