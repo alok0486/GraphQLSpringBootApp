@@ -1,24 +1,26 @@
 # GraphQLSpringBootApp
 
-{
-	personById(id:"3"){
-		    email
-    	  id
+# Query to get Person on person ID
+
+  personById(id:"3"){
+	email
+    	id
         name
         address
         dob
     }
-    
-    addressByPersonId(id:"2"){
-			  id
-			  city
-			  pin
-			  house_no
-		}
-    addressById(id:"001"){
-        id
-			  city
-			  pin
-			  house_no
-    }
+
+# Query to get on address ID
+addressByPersonId(id:"2"){
+  id
+  city
+  pin
+  house_no
+}
+# Query to geton person ID
+addressById(id:"001"){
+  id
+  city
+  pin
+  house_no
 }
