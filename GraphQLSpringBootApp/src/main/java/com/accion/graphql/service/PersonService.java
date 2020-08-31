@@ -87,6 +87,9 @@ public class PersonService  {
                 		.dataFetcher("personById", personDataFetcher)
                 		.dataFetcher("addressById",addressDataFetcher)
                 		.dataFetcher("addressByPersonId",allPersonAddressDataFetcher))
+		.type("Person", typeWiring -> typeWiring
+                		.dataFetcher("address", allAddressDataFetcher)
+                		)
                 .build();
     }
 	
