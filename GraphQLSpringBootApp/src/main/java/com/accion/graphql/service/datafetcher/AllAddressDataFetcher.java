@@ -21,5 +21,4 @@ public class AllAddressDataFetcher implements DataFetcher<Address>{
 		Person person = environment.getSource();
 		return addressRepository.findById(person.getAddressId()).get();
 	}
-	
 }
