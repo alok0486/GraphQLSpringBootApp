@@ -25,7 +25,7 @@ public class AllPersonAddressDataFetcher implements DataFetcher<Address>{
 		String id = environment.getArgument("id");
 		Person person = personRespository.findById(id).get();
 		
-		String addressId = person.getAddress();
+		String addressId = person.getAddressId();
 		System.out.println("Address Id >> "+addressId);
 
 		Address address = addressRepository.findById(addressId).get();
