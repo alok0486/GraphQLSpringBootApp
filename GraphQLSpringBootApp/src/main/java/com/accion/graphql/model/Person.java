@@ -10,10 +10,10 @@ public class Person {
 	
 	public Person(){}
 
-	public Person(String id, String name, String email,String address, String dob) {
+	public Person(String id, String name, String email,String addressId, String dob) {
 		this.id = id;
 		this.name = name;
-		this.address = address;
+		this.addressId = addressId;
 		this.email = email;
 		this.dob = dob;
 	}
@@ -21,7 +21,7 @@ public class Person {
 	private String id;
 	private String name;
 	private String email;
-	private String address;
+	private String addressId;
 	private String dob;
 	
 	/*
@@ -53,12 +53,13 @@ public class Person {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getAddress() {
-		return address;
+	public String getAddressId() {
+		return addressId;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+	public void setAddressId(String addressId) {
+		this.addressId = addressId;
 	}
+
 	public String getDob() {
 		return dob;
 	}

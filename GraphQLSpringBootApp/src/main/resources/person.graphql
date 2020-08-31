@@ -13,7 +13,8 @@ type Person {
 	name	:	String
 	email	:	String
 	dob		:	String
-	address	:	String
+	addressId	:	String
+	address	:	Address
 }
 
 type Address {
@@ -23,4 +24,8 @@ type Address {
 	pin			: 	String
 }
 
+#type Mutation {
+#	createPerson(id: String, name: String, email: String, dob: String, address:String)	:	Person
+#	createAddress(id: String, city: String, house_no: String ,pin: String )	:	Address
+#}
 

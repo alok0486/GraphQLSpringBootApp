@@ -16,6 +16,7 @@ import com.accion.graphql.model.Person;
 import com.accion.graphql.repository.AddressRepository;
 import com.accion.graphql.repository.PersonRepository;
 import com.accion.graphql.service.datafetcher.AddressDataFetcher;
+import com.accion.graphql.service.datafetcher.AllAddressDataFetcher;
 import com.accion.graphql.service.datafetcher.AllPersonAddressDataFetcher;
 import com.accion.graphql.service.datafetcher.PersonDataFetcher;
 
@@ -49,6 +50,8 @@ public class PersonService  {
 	@Autowired
 	AllPersonAddressDataFetcher allPersonAddressDataFetcher;
 	
+	@Autowired
+	AllAddressDataFetcher allAddressDataFetcher;
 	
 	@PostConstruct
 	private void loadSchema() throws IOException{
@@ -87,6 +90,9 @@ public class PersonService  {
                 		.dataFetcher("personById", personDataFetcher)
                 		.dataFetcher("addressById",addressDataFetcher)
                 		.dataFetcher("addressByPersonId",allPersonAddressDataFetcher))
+                .type("Person", typeWiring -> typeWiring
+                		.dataFetcher("address", allAddressDataFetcher)
+                		)
                 .build();
     }
 	
