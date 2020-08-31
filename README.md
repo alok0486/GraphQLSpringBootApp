@@ -2,13 +2,19 @@
 
 # Query to get Person on person ID
 
-  personById(id:"3"){
+  {
+	personById(id:"1"){
 	email
     	id
         name
-        address
+        addressId
+        address{
+       	 	city
+        	pin
+        }
         dob
-    }
+   }
+}
 
 # Query to get on address ID
 addressByPersonId(id:"2"){
