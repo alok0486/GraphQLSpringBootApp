@@ -66,26 +66,10 @@ public class PersonService  {
 	}
 	
 	private void LoadData() {
-		Stream<Address> stream1 =  Stream.of(
-				 Address.builder().city("Ranchi")
-					.pin(834001)
-					.id(1)
-					.houseNo("20").build()
-				); 
-		Stream<Address> stream2 = Stream.of(	 
-				Address.builder().city("Banglore")
-					.pin(560032)
-					.id(2)
-					.houseNo("1")
-					.build()
-		 );
-		Stream<Address> stream3 = Stream.of(
-				 Address.builder().city("Delhi")
-					.pin(123210)
-					.id(3)
-					.houseNo("1")
-					.build()
-				 );
+		Stream<Address> stream1 =  Stream.of(Address.builder().city("Ranchi").pin(834001).id(1).houseNo("20").build()); 
+		Stream<Address> stream2 = Stream.of(Address.builder().city("Banglore").pin(560032).id(2).houseNo("1").build());
+		Stream<Address> stream3 = Stream.of(Address.builder().city("Delhi").pin(123210).id(3).houseNo("1").build());
+		
 		Stream<Address> stream4 =  Stream.concat(stream1, stream2);
 		Stream<Address> stream5 = Stream.concat(stream4, stream3);
 		
