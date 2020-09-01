@@ -4,49 +4,30 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.boot.context.properties.ConstructorBinding;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.Generated;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor(staticName = "of")
+@Setter
+@Getter
+@Builder
 @Table
 @Entity
 public class Address {
 	@Id
-	private	String id;
-	private	String house_no;
+	@Generated
+	private	int id;
+	private	String houseNo;
 	private	String city;
-	private	String pin;
-	
-	public Address() {}
-	
-	public Address(String id, String house_no, String city, String pin) {
-		this.id = id;
-		this.house_no = house_no;
-		this.city = city;
-		this.pin = pin;
-	}
-	
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getCity() {
-		return city;
-	}
-	public void setCity(String city) {
-		this.city = city;
-	}
-	public String getPin() {
-		return pin;
-	}
-	public void setPin(String pin) {
-		this.pin = pin;
-	}
-	public String getHouse_no() {
-		return house_no;
-	}
-	public void setHouse_no(String house_no) {
-		this.house_no = house_no;
-	}
+	private	long pin;
 	
 }

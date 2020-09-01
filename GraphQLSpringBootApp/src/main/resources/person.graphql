@@ -3,29 +3,26 @@ schema {
 }
 
 type Query {
-	personById(id: String)		: Person
-	addressById(id : String)	: Address
-	addressByPersonId(id:String)	: Address
+	personById(id: Int)			: Person
+	addressById(id : Int)		: Address
+	addressByPersonId(id:Int)	: Address
 }
 
 type Person {
-	id		:	String
+	id			:	Int
 	name		:	String
 	email		:	String
-	dob		:	String
-	addressId	:	String
-	address	:	Address
-}
+	dob			:	String
+	addressId	:	Int
+	address		:	Address
+}	
 
 type Address {
-	id		:	String
+	id			:	Int
 	house_no	:	String
 	city		: 	String
-	pin		: 	String
+	pin			: 	Long
 }
 
-#type Mutation {
-#	createPerson(id: String, name: String, email: String, dob: String, address:String)	:	Person
-#	createAddress(id: String, city: String, house_no: String ,pin: String )	:	Address
-#}
+
 

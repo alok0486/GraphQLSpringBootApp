@@ -17,7 +17,7 @@ public class PersonDataFetcher implements DataFetcher<Person>{
 	
 	@Override
 	public Person get(DataFetchingEnvironment environment) {
-		String id = environment.getArgument("id");
+		int id = environment.getArgument("id");
 		return personRepository.findById(id).get();
 	}
 	

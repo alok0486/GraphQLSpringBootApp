@@ -22,10 +22,10 @@ public class AllPersonAddressDataFetcher implements DataFetcher<Address>{
 	
 	@Override
 	public Address get(DataFetchingEnvironment environment) {
-		String id = environment.getArgument("id");
+		int id = environment.getArgument("id");
 		Person person = personRespository.findById(id).get();
 		
-		String addressId = person.getAddressId();
+		int addressId = person.getAddressId();
 		System.out.println("Address Id >> "+addressId);
 
 		Address address = addressRepository.findById(addressId).get();

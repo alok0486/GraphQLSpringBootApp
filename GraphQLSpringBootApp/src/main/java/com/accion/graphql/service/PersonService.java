@@ -2,6 +2,8 @@ package com.accion.graphql.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.PostConstruct;
@@ -64,24 +66,45 @@ public class PersonService  {
 	}
 	
 	private void LoadData() {
-		 Stream.of(
-				  new Address("001","1", "Ranchi", "834001"),
-				  new Address("002","2", "Pune", "410081"),
-				  new Address("003","3","Banglore","560031")
-	        ).forEach(address -> {
-	        	addressRepository.save(address);
-	        });
-		 
-		 Stream.of(
-				  new Person("1", "Alok", "alok.ranjan@accionlabs.com",
-						  "001" , "Sepetember 2017"),
-				  new Person("2", "Ranjan", "ranjan@accionlabs.com",
-						 "002", "June 2019"),
-				  new Person("3", "Alok Ranjan", "ar_alok@accionlabs.com",
-						 "003", "Jan 2012")
-	        ).forEach(person -> {
-	        	personrepository.save(person);
-	        });
+		Stream<Address> stream1 =  Stream.of(
+				 Address.builder().city("Ranchi")
+					.pin(834001)
+					.id(1)
+					.houseNo("20").build()
+				); 
+		Stream<Address> stream2 = Stream.of(	 
+				Address.builder().city("Banglore")
+					.pin(560032)
+					.id(2)
+					.houseNo("1")
+					.build()
+		 );
+		Stream<Address> stream3 = Stream.of(
+				 Address.builder().city("Delhi")
+					.pin(123210)
+					.id(3)
+					.houseNo("1")
+					.build()
+				 );
+		Stream<Address> stream4 =  Stream.concat(stream1, stream2);
+		Stream<Address> stream5 = Stream.concat(stream4, stream3);
+		
+		List<Address> addresslist = stream5.collect(Collectors.toList());
+		addresslist.forEach(address -> {
+	       	addressRepository.save(address);
+	    });
+		
+		Stream<Person> person1 = Stream.of( Person.builder().id(1).addressId(1).dob("Jan 2020").name("Alok").email("Alok.Ranjan@accionlabs.com").build());
+		Stream<Person> person2 = Stream.of( Person.builder().id(2).addressId(2).dob("March 2020").name("Alok Ranjan").email("Alok.Ranjan@accionlabs.com").build());
+		Stream<Person> person3 = Stream.of( Person.builder().id(3).addressId(3).dob("May 2020").name("Ranjan").email("Alok.Ranjan@accionlabs.com").build());
+		
+		Stream<Person> personStream1 =   Stream.concat(person1, person2);
+		Stream<Person> personStream2 =   Stream.concat(personStream1, person3);
+
+		List<Person> personList = personStream2.collect(Collectors.toList());
+		personList.forEach(person -> {
+	        personrepository.save(person);
+	    });
 	}
 
 	private RuntimeWiring buildRuntimeWiring() {

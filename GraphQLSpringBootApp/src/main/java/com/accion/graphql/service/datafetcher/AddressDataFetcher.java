@@ -17,7 +17,7 @@ public class AddressDataFetcher implements DataFetcher<Address>{
 	
 	@Override
 	public Address get(DataFetchingEnvironment environment) {
-		String id = environment.getArgument("id");
+		int id = environment.getArgument("id");
 		return addressRepository.findById(id).get();
 	}
 	 

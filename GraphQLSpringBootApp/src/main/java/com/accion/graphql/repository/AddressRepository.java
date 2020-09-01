@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import com.accion.graphql.model.Address;
 @Repository
-public interface AddressRepository extends JpaRepository<Address, String> {
+public interface AddressRepository extends JpaRepository<Address, Integer> {
 
 }

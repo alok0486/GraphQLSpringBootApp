@@ -16,22 +16,13 @@ public class PersonMutation implements GraphQLMutationResolver {
 	@Autowired
 	AddressRepository addressRepository;
 	
-	public Person createPerson(final String id, final String name, final String email, final String dob, final String addressId) {
-		 Person person = new Person();
-		 person.setId(id);
-		 person.setName(name);
-		 person.setEmail(email);
-		 person.setDob(dob);
-		 person.setAddressId(addressId);
+	public Person createPerson(final int id, final String name, final String email, final String dob, final int addressId) {
+		Person person = Person.builder().id(id).name(name).email(email).dob(dob).addressId(addressId).build();
 		return personRepository.save(person);
 	 }
 	 
-	 public Address createAddress(final String id, final String city , final String house_no, final String pin ) {
-		 Address address = new Address();
-		 address.setId(id);
-		 address.setCity(city);
-		 address.setHouse_no(house_no);
-		 address.setPin(pin);
+	 public Address createAddress(final int id, final String city , final String house_no, final long pin ) {
+		 Address address = Address.builder().id(id).city(city).houseNo(house_no).pin(pin).build();
 		 return addressRepository.save(address);
 	 }
 }
