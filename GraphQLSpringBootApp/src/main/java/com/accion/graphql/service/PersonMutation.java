@@ -1,5 +1,7 @@
 package com.accion.graphql.service;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.accion.graphql.model.Address;
@@ -17,7 +19,7 @@ public class PersonMutation implements GraphQLMutationResolver {
 	AddressRepository addressRepository;
 	
 	public Person createPerson(final int id, final String name, final String email, final String dob, final int addressId) {
-		Person person = Person.builder().id(id).name(name).email(email).dob(dob).addressId(addressId).build();
+		Person person = Person.builder().id(id).name(name).email(email).dob(new Date()).addressId(addressId).build();
 		return personRepository.save(person);
 	 }
 	 

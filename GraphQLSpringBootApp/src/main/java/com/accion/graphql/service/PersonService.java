@@ -2,6 +2,7 @@ package com.accion.graphql.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -66,21 +67,18 @@ public class PersonService  {
 	}
 	
 	private void LoadData() {
-		Stream<Address> stream1 =  Stream.of(Address.builder().city("Ranchi").pin(834001).houseNo("20").build()); 
-		Stream<Address> stream2 = Stream.of(Address.builder().city("Banglore").pin(560032).houseNo("1").build());
-		Stream<Address> stream3 = Stream.of(Address.builder().city("Delhi").pin(123210).houseNo("1").build());
-		
-		Stream<Address> stream4 =  Stream.concat(stream1, stream2);
-		Stream<Address> stream5 = Stream.concat(stream4, stream3);
-		
-		List<Address> addresslist = stream5.collect(Collectors.toList());
+		Stream<Address> stream = Stream.generate(() -> Address.builder().city("Ranchi").pin(834001).houseNo("20").build()).limit(3);
+		List<Address> addresslist = stream.collect(Collectors.toList());
 		addresslist.forEach(address -> {
 	       	addressRepository.save(address);
 	    });
+
+		List<Integer> list = addresslist.stream().map(Address::getId).collect(Collectors.toList());
+		System.out.println("Person Ids "+list);
 		
-		Stream<Person> person1 = Stream.of( Person.builder().id(1).addressId(1).dob("Jan 2020").name("Alok").email("Alok.Ranjan@accionlabs.com").build());
-		Stream<Person> person2 = Stream.of( Person.builder().id(2).addressId(2).dob("March 2020").name("Alok Ranjan").email("Alok.Ranjan@accionlabs.com").build());
-		Stream<Person> person3 = Stream.of( Person.builder().id(3).addressId(3).dob("May 2020").name("Ranjan").email("Alok.Ranjan@accionlabs.com").build());
+		Stream<Person> person1 = Stream.of( Person.builder().addressId(1).dob(new Date()).name("Alok").email("Alok@accionlabs.com").build());
+		Stream<Person> person2 = Stream.of( Person.builder().addressId(2).dob(new Date()).name("Alok Ranjan").email("Alok.Ranjan@accionlabs.com").build());
+		Stream<Person> person3 = Stream.of( Person.builder().addressId(3).dob(new Date()).name("Ranjan").email("Ranjan@accionlabs.com").build());
 		
 		Stream<Person> personStream1 =   Stream.concat(person1, person2);
 		Stream<Person> personStream2 =   Stream.concat(personStream1, person3);
@@ -98,8 +96,7 @@ public class PersonService  {
                 		.dataFetcher("addressById",addressDataFetcher)
                 		.dataFetcher("addressByPersonId",allPersonAddressDataFetcher))
                 .type("Person", typeWiring -> typeWiring
-                		.dataFetcher("address", allAddressDataFetcher)
-                		)
+                		.dataFetcher("address", allAddressDataFetcher))
                 .build();
     }
 	

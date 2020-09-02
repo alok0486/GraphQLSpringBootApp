@@ -1,14 +1,18 @@
 package com.accion.graphql.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Generated;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,12 +27,14 @@ import lombok.Setter;
 public class Person {
 	
 	@Id
-	@Generated
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id;
 	private String name;
 	private String email;
+	
 	private int addressId;
-	private String dob;
+	@DateTimeFormat
+	private Date dob;
 	
 	/*
 	 * @ManyToOne
